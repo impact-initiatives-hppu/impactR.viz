@@ -1,0 +1,23 @@
+Package: impactR.viz
+Title: Color and viz helpers, wrappers, templates
+Version: 0.9.9000
+Authors@R: c(
+        person(
+            'Noblet', 'Guillaume',
+            email = 'gnoblet@zaclys.net',
+            role = c('aut', 'cre')
+            )
+        )
+Maintainer: Guillaume Noblet <gnoblet@zaclys.net>
+Description: It basically provides colors as hex codes, color palettes, and some viz functions (graphs and maps).
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Imports: 
+    dplyr,
+    ggplot2,
+    ggtext,
+    grDevices,
+    rlang,
+    scales
