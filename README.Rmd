@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-`impactR.viz` proposesready-to-go colors and color palettes for IMPACT, and a few functions for plats and maps.
+`impactR.viz` proposes ready-to-go colors and color palettes for IMPACT, and a few functions for plats and maps.
 
 ## Installation
 
@@ -26,7 +26,7 @@ You can install the development version of impactR.viz from
 [GitHub](https://github.com/) like so:
 
 ``` r
-devtools::install_github("gnoblet/impactR.viz")
+devtools::install_github("impact-initiatives-hppu/impactR.viz")
 ```
 
 ## Request
