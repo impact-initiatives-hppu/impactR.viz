@@ -87,9 +87,9 @@ df <- penguins |>
   mutate(freq = count/sum(count)*100, .by = "island") 
 
 # Simple bar chart by group with some alpha transparency
-bar(df, "island", "freq", "species", title = "% of penguins by island and species", group_title = "Species") 
+bar(df, "island", "freq", "species", title = "% of penguins by island and species",  add_text_expand_limit = 1.2, group_title = "Species") 
 
-# Cchange of palette, change of theming to adapt
+# Change of palette, change of theming to adapt
 bar(df, "island", "freq", "species", group_title = "Species",  alpha = 0.6, flip = FALSE, title = "% of penguins by island and species", palette = "cat_3_tol_high_contrast", theme = theme_reach(axis_y = F, grid_major_x = F, axis_ticks_x = F))
 
 ```
