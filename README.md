@@ -6,7 +6,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-`impactR.viz` proposesready-to-go colors and color palettes for IMPACT,
+`impactR.viz` proposes ready-to-go colors and color palettes for IMPACT,
 and a few functions for plats and maps.
 
 ## Installation
@@ -15,7 +15,7 @@ You can install the development version of impactR.viz from
 [GitHub](https://github.com/) like so:
 
 ``` r
-devtools::install_github("gnoblet/impactR.viz")
+devtools::install_github("impact-initiatives-hppu/impactR.viz")
 ```
 
 ## Request
@@ -123,14 +123,14 @@ df <- penguins |>
   mutate(freq = count/sum(count)*100, .by = "island") 
 
 # Simple bar chart by group with some alpha transparency
-bar(df, "island", "freq", "species", title = "% of penguins by island and species", group_title = "Species") 
+bar(df, "island", "freq", "species", title = "% of penguins by island and species",  add_text_expand_limit = 1.2, group_title = "Species") 
 ```
 
 <img src="man/figures/README-example-bar-chart-3.png" width="65%" />
 
 ``` r
 
-# Cchange of palette, change of theming to adapt
+# Change of palette, change of theming to adapt
 bar(df, "island", "freq", "species", group_title = "Species",  alpha = 0.6, flip = FALSE, title = "% of penguins by island and species", palette = "cat_3_tol_high_contrast", theme = theme_reach(axis_y = F, grid_major_x = F, axis_ticks_x = F))
 ```
 
@@ -145,7 +145,8 @@ with the `group` arg.
 
 # Simple point chart
 point(penguins, "bill_length_mm", "flipper_length_mm", title = "What a good test title!")
-#> Warning: Removed 2 rows containing missing values (`geom_point()`).
+#> Warning: Removed 2 rows containing missing values or values outside the scale range
+#> (`geom_point()`).
 ```
 
 <img src="man/figures/README-example-point-chart-1.png" width="65%" />
@@ -154,7 +155,8 @@ point(penguins, "bill_length_mm", "flipper_length_mm", title = "What a good test
 
 # Point chart with grouping colors, different palette, greater dot size, some transparency, reversed color palette
 point(penguins, "bill_length_mm", "flipper_length_mm", "island", palette= "cat_8_wong", group_title = "Islands", alpha = 0.7, size = 3)
-#> Warning: Removed 2 rows containing missing values (`geom_point()`).
+#> Warning: Removed 2 rows containing missing values or values outside the scale range
+#> (`geom_point()`).
 ```
 
 <img src="man/figures/README-example-point-chart-2.png" width="65%" />
