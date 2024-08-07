@@ -5,7 +5,7 @@
 \alias{scale_fill_impact_discrete}
 \alias{scale_fill_impact_continuous}
 \alias{scale_color_impact_continuous}
-\title{Scale constructors}
+\title{Scale constructors for fill and colors}
 \usage{
 scale_color_impact_discrete(
   palette = "cat_5_ibm",
@@ -45,5 +45,5 @@ scale_color_impact_continuous(
 \item{...}{Additional arguments passed to \code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}} if discrete or \code{\link[ggplot2:scale_gradient]{ggplot2::scale_fill_gradient()}} if continuous.}
 }
 \description{
-Scale constructors
+This function is based on \code{\link[=palette]{palette()}}. If palette is NULL, the used palette will be magma from gpplot2's viridis scale constructors.
 }
