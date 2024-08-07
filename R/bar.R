@@ -23,6 +23,7 @@
 #' @param add_text_threshold_display Minimum value to add the text label.
 #' @param add_text_suffix If percent is FALSE, should we add a suffix to the text label?
 #' @param add_text_expand_limit Default to adding 10% on top of the bar.
+#' @param add_text_round Round the text label.
 #' @param theme_fun Whatever theme function. For no custom theme, use theme_fun = NULL.
 #' @param scale_impact Use the package custom scales for fill and color.
 #'
@@ -54,7 +55,8 @@ bar <- function(
     add_text_font_face = "plain",
     add_text_threshold_display = 0.05,
     add_text_suffix = "%",
-    add_text_expand_limit = 1.1,
+    add_text_expand_limit = 1.2,
+    add_text_round = 1,
     theme_fun = theme_reach(
       grid_major_x = FALSE,
       axis_x = FALSE,
@@ -112,6 +114,7 @@ bar <- function(
 
   # Should the graph use position_fill?
   if(group != "") {
+
     if (position == "stack"){
       g <- g + ggplot2::geom_col(
         alpha    = alpha,
@@ -132,7 +135,9 @@ bar <- function(
         width = width
       )
     }
+
   } else {
+
     if (position == "stack"){
       g <- g + ggplot2::geom_col(
         alpha    = alpha,
@@ -151,7 +156,7 @@ bar <- function(
         fill = add_color,
         color = add_color
       )
-    } else{
+    } else {
       g <- g + ggplot2::geom_col(
         alpha = alpha,
         width = width,
@@ -190,7 +195,7 @@ bar <- function(
     g <- g + ggplot2::geom_text(
       data = df,
       ggplot2::aes(
-        label = ifelse(is.na(!!rlang::sym("y_threshold")), NA, paste0(round(!!rlang::sym("y_threshold")), add_text_suffix)),
+        label = ifelse(is.na(!!rlang::sym("y_threshold")), NA, paste0(round(!!rlang::sym("y_threshold"), add_text_round), add_text_suffix)),
         group = !!rlang::sym(group)),
       hjust = hjust_flip,
       vjust = vjust_flip,
@@ -208,7 +213,7 @@ bar <- function(
     g <- g + ggplot2::geom_text(
       data = df,
       ggplot2::aes(
-        label = ifelse(is.na(!!rlang::sym("y_threshold")), NA, paste0(round(!!rlang::sym("y_threshold")), add_text_suffix)),
+        label = ifelse(is.na(!!rlang::sym("y_threshold")), NA, paste0(round(!!rlang::sym("y_threshold"), add_text_round), add_text_suffix)),
         group = !!rlang::sym(group)),
       color = add_text_color,
       fontface = add_text_font_face,
@@ -222,7 +227,7 @@ bar <- function(
   if(!is.null(theme_fun)) g <- g + theme_fun
 
   # Add scale
-  if(scale_impact) g <- g + scale_fill_impact_discrete(palette, direction, reverse_guide) + scale_color_impact_discrete(palette, direction, reverse_guide)
+  if(scale_impact) g <- g + scale_fill_impact_discrete(palette = palette, direction, reverse_guide) + scale_color_impact_discrete(palette = palette, direction, reverse_guide)
 
   return(g)
 }
