@@ -1,4 +1,6 @@
-#' Scale constructors
+#' Scale constructors for fill and colors
+#'
+#' This function is based on [palette()]. If palette is NULL, the used palette will be magma from gpplot2's viridis scale constructors.
 #'
 #' @inheritParams palette_gen
 #'
@@ -8,19 +10,36 @@
 #' @export
 scale_color_impact_discrete <- function(palette = "cat_5_ibm", direction = 1, reverse_guide = TRUE, ...) {
 
-  ggplot2::discrete_scale(
-    "color",
-    palette,
-    palette = palette_gen(palette, "discrete", direction),
-    guide = ggplot2::guide_legend(
-      title.position = "top",
-      draw.ulim = TRUE,
-      draw.llim = TRUE,
-      # ticks.colour = "#F1F3F5",
-      reverse = reverse_guide
-    ),
-    ...
-  )
+  if (!(is.null(palette))) {
+    ggplot2::discrete_scale(
+      "color",
+      palette,
+      palette = palette_gen(palette, "discrete", direction),
+      guide = ggplot2::guide_legend(
+        title.position = "top",
+        draw.ulim = TRUE,
+        draw.llim = TRUE,
+        # ticks.colour = "#F1F3F5",
+        reverse = reverse_guide
+      ),
+      ...
+    )
+  } else {
+
+    ggplot2::scale_colour_viridis_d(
+      direction = direction,
+      guide = ggplot2::guide_legend(
+        title.position = "top",
+        draw.ulim = TRUE,
+        draw.llim = TRUE,
+        # ticks.colour = "#F1F3F5",
+        reverse = reverse_guide
+      ),
+      ...
+    )
+
+  }
+
 }
 
 #' @rdname scale_color_impact_discrete
@@ -28,19 +47,37 @@ scale_color_impact_discrete <- function(palette = "cat_5_ibm", direction = 1, re
 #' @export
 scale_fill_impact_discrete <- function(palette = "cat_5_ibm", direction = 1, reverse_guide = TRUE, ...) {
 
-  ggplot2::discrete_scale(
-    "fill",
-    palette,
-    palette = palette_gen(palette, "discrete", direction),
-    guide = ggplot2::guide_legend(
-      title.position = "top",
-      draw.ulim = TRUE,
-      draw.llim = TRUE,
-      # ticks.colour = "#F1F3F5",
-      reverse = reverse_guide
-    ),
-    ...
-  )
+  if (!(is.null(palette))) {
+
+    ggplot2::discrete_scale(
+      "fill",
+      palette,
+      palette = palette_gen(palette, "discrete", direction),
+      guide = ggplot2::guide_legend(
+        title.position = "top",
+        draw.ulim = TRUE,
+        draw.llim = TRUE,
+        # ticks.colour = "#F1F3F5",
+        reverse = reverse_guide
+      ),
+      ...
+    )
+  } else {
+
+    ggplot2::scale_fill_viridis_d(
+      direction = direction,
+      guide = ggplot2::guide_legend(
+        title.position = "top",
+        draw.ulim = TRUE,
+        draw.llim = TRUE,
+        # ticks.colour = "#F1F3F5",
+        reverse = reverse_guide
+      ),
+      ...
+    )
+
+  }
+
 }
 
 #' @rdname scale_color_impact_discrete
@@ -48,19 +85,37 @@ scale_fill_impact_discrete <- function(palette = "cat_5_ibm", direction = 1, rev
 #' @export
 scale_fill_impact_continuous <- function(palette = "quant_7_artichoke", direction = 1, reverse_guide = TRUE, ...) {
 
-  pal <- palette_gen(palette, "continuous", direction)
+  if (!(is.null(palette))) {
 
-  ggplot2::scale_fill_gradientn(
-    colors = pal(256),
-    guide = ggplot2::guide_colorbar(
-      title.position = "top",
-      draw.ulim = TRUE,
-      draw.llim = TRUE,
-      # ticks.colour = "#F1F3F5",
-      reverse = reverse_guide
-    ),
-    ...
-  )
+    pal <- palette_gen(palette, "continuous", direction)
+
+    ggplot2::scale_fill_gradientn(
+      colors = pal(256),
+      guide = ggplot2::guide_colorbar(
+        title.position = "top",
+        draw.ulim = TRUE,
+        draw.llim = TRUE,
+        # ticks.colour = "#F1F3F5",
+        reverse = reverse_guide
+      ),
+      ...
+    )
+
+  } else {
+
+    ggplot2::scale_fill_viridis_c(
+      option = "magma",
+      guide = ggplot2::guide_colorbar(
+        title.position = "top",
+        draw.ulim = TRUE,
+        draw.llim = TRUE,
+        # ticks.colour = "#F1F3F5",
+        reverse = reverse_guide
+      ),
+      ...)
+
+  }
+
 }
 
 #' @rdname scale_color_impact_discrete
@@ -68,17 +123,35 @@ scale_fill_impact_continuous <- function(palette = "quant_7_artichoke", directio
 #' @export
 scale_color_impact_continuous <- function(palette = "quant_7_artichoke", direction = 1, reverse_guide = TRUE, ...) {
 
-  pal <- palette_gen(palette, "continuous", direction)
+  if (!(is.null(palette))) {
 
-  ggplot2::scale_color_gradientn(
-    colours = pal(256),
-    guide = ggplot2::guide_colorbar(
-      title.position = "top",
-      draw.ulim = TRUE,
-      draw.llim = TRUE,
-      # ticks.colour = "#F1F3F5",
-      reverse = reverse_guide
-    ),
-    ...
-  )
+    pal <- palette_gen(palette, "continuous", direction)
+
+    ggplot2::scale_fill_gradientn(
+      colors = pal(256),
+      guide = ggplot2::guide_colorbar(
+        title.position = "top",
+        draw.ulim = TRUE,
+        draw.llim = TRUE,
+        # ticks.colour = "#F1F3F5",
+        reverse = reverse_guide
+      ),
+      ...
+    )
+
+  } else {
+
+    ggplot2::scale_colour_viridis_c(
+      option = "magma",
+      guide = ggplot2::guide_colorbar(
+        title.position = "top",
+        draw.ulim = TRUE,
+        draw.llim = TRUE,
+        # ticks.colour = "#F1F3F5",
+        reverse = reverse_guide
+      ),
+      ...)
+
+  }
+
 }
