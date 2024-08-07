@@ -55,7 +55,7 @@ bar <- function(
     add_text_font_face = "plain",
     add_text_threshold_display = 0.05,
     add_text_suffix = "%",
-    add_text_expand_limit = 1.1,
+    add_text_expand_limit = 1.2,
     add_text_round = 1,
     theme_fun = theme_reach(
       grid_major_x = FALSE,
